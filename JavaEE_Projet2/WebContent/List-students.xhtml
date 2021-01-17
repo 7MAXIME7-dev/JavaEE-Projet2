@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+          
+          
+          
+<html xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	 xmlns:h="http://xmlns.jcp.org/jsf/html"
+	 xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:metadata>
+<f:event type="preRenderView" listener="#{studentManager.loadStudents()}"/>
+</f:metadata>
+
+<head>
+	<title><ui:insert name="title">Web Student Book</ui:insert></title>
+	
+	<style type="text/css">	
+		  .ball {
+		  position: relative;
+		  top: 10%;
+		  left: 50%;
+		  width: 80%;
+		  height: 80%;
+		  border-radius: 100%;
+		  background: radial-gradient(circle at bottom, #81e8f6, #76deef 10%, #055194 80%, #062745 100%); }
+		  .ball.plain {
+		    background: black; }
+		    .ball.plain:before, .ball.plain:after {
+		      display: none; }
+		  .ball.bubble {
+		    background: radial-gradient(circle at 50% 55%, rgba(240, 245, 255, 0.9), rgba(240, 245, 255, 0.9) 40%, rgba(225, 238, 255, 0.8) 60%, rgba(43, 130, 255, 0.4));
+		    -webkit-animation: bubble-anim 2s ease-out infinite;
+		    animation: bubble-anim 2s ease-out infinite; }
+		    .ball.bubble:before {
+		      -webkit-filter: blur(0);
+		      filter: blur(0);
+		      height: 80%;
+		      width: 40%;
+		      background: radial-gradient(circle at 130% 130%, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0) 46%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.8) 58%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0) 100%);
+		      -webkit-transform: translateX(131%) translateY(58%) rotateZ(168deg) rotateX(10deg);
+		      transform: translateX(131%) translateY(58%) rotateZ(168deg) rotateX(10deg); }
+		    .ball.bubble:after {
+		      display: block;
+		      background: radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 74%, white 80%, white 84%, rgba(255, 255, 255, 0) 100%); }
+		
+		.stage1 {
+		  width: 300px;
+		  height: 300px;
+		}
+		
+		.stage2 {
+		  width: 100px;
+		  height: 100px;
+		}
+		
+		.stage3 {
+		  width: 150px;
+		  height: 150px;
+		}
+		
+		@-webkit-keyframes bubble-anim
+		{
+		  0% {
+		    -webkit-transform: scale(1);
+		    transform: scale(1); }
+		
+		  20% {
+		    -webkit-transform: scaleY(0.95) scaleX(1.05);
+		    transform: scaleY(0.95) scaleX(1.05); }
+		
+		  48% {
+		    -webkit-transform: scaleY(1.1) scaleX(0.9);
+		    transform: scaleY(1.1) scaleX(0.9); }
+		
+		  68% {
+		    -webkit-transform: scaleY(0.98) scaleX(1.02);
+		    transform: scaleY(0.98) scaleX(1.02); }
+		
+		  80% {
+		    -webkit-transform: scaleY(1.02) scaleX(0.98);
+		    transform: scaleY(1.02) scaleX(0.98); }
+		
+		  97%, 100% {
+		    -webkit-transform: scale(1);
+		    transform: scale(1); } 
+		}
+		
+		@keyframes bubble-anim 
+		{
+		  0% {
+		    -webkit-transform: scale(1);
+		    transform: scale(1); }
+		
+		  20% {
+		    -webkit-transform: scaleY(0.95) scaleX(1.05);
+		    transform: scaleY(0.95) scaleX(1.05); }
+		
+		  48% {
+		    -webkit-transform: scaleY(1.1) scaleX(0.9);
+		    transform: scaleY(1.1) scaleX(0.9); }
+		
+		  68% {
+		    -webkit-transform: scaleY(0.98) scaleX(1.02);
+		    transform: scaleY(0.98) scaleX(1.02); }
+		
+		  80% {
+		    -webkit-transform: scaleY(1.02) scaleX(0.98);
+		    transform: scaleY(1.02) scaleX(0.98); }
+		
+		  97%, 100% {
+		    -webkit-transform: scale(1);
+		    transform: scale(1); }		   
+		}
+				
+	</style>
+	
+</head>
+
+<body style="background-color: #F2D9DE;">	
+
+	<h1 style="text-align:center; margin-top:150px;">List of Students</h1>
+	
+	<section class="stage1">
+      <figure class="ball bubble"></figure>
+	</section>
+	
+	<section style="position:absolute; left:59%; top: 27%;" class="stage2">
+      <figure class="ball bubble"></figure>
+	</section>
+	
+	<section style="position:absolute; top: 3%;" class="stage3">
+      <figure class="ball bubble"></figure>
+	</section>
+	
+	<section style="position:absolute; top: 70%; left:45%;" class="stage3">
+      <figure class="ball bubble"></figure>
+	</section>
+	
+	<section style="position:absolute" class="stage3">
+      <figure class="ball bubble"></figure>
+	</section>
+	
+	<section style="position:absolute; left:59%; top:50%;" class="stage3">
+      <figure class="ball bubble"></figure>
+	</section>
+	
+	<section style="position:absolute; left:70%; top:10%;" class="stage1">
+      <figure class="ball bubble"></figure>
+	</section>
+
+	<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+
+		<h:dataTable style="border-radius: 1%; border-color: black; border-spacing: 5px; box-shadow: 10px 25px 50px rgba(0, 0, 0, .3);"
+		border="1" value="#{studentManager.students}" var="tempStudent">
+		
+			<h:column>
+					<f:facet name="header">ID</f:facet>#{tempStudent.ID}
+	 		</h:column>
+	
+			<h:column>
+					<f:facet name="header">First Name</f:facet>#{tempStudent.firstName}
+	 		</h:column>
+	
+			<h:column>
+					<f:facet name="header">Last Name</f:facet>#{tempStudent.lastName}
+	 		</h:column>
+	
+	
+			<h:column>
+					<f:facet name="header">Email</f:facet>#{tempStudent.email}
+	 		</h:column>
+	
+	
+			<h:column>
+				<f:facet name="header">Actions</f:facet>
+	
+				<h:form>
+					<h:commandButton style="background-color: lightpink;" value="Edit" action="#{studentManager.loadStudent(tempStudent.ID)}"/>
+	
+					<h:commandButton style="background-color: lightpink;" value="Delete" action="#{studentManager.deleteStudent(tempStudent.ID)}"/>	
+				</h:form>
+	
+			</h:column>
+
+		</h:dataTable>
+
+		<h:form>
+			<h:commandButton style="background-color: lightpink;" value="Add a new Student" action="Add-student.xhtml" />
+		</h:form>
+
+	</div>
+
+</body>
+
+</html>
